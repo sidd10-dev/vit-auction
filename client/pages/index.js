@@ -1,11 +1,9 @@
-import NavbarComp from "../components/navbar-comp"
-import NavbarCust from "../components/navbar-cust"
-
+import Navbar from "../components/navbar"
 
 export default function index() {
   return (
     <>
-      <NavbarCust></NavbarCust>
+      <Navbar></Navbar>
     </>
   )
 }
