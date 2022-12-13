@@ -1,11 +1,12 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import {Router, useRouter} from 'next/router'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: false },
-  { name: 'Market', href: '#', current: false },
-  { name: 'Pending', href: '#', current: false },
+  { name: 'Dashboard', href: '', current: false },
+  { name: 'Market', href: 'market', current: false },
+  { name: 'Pending', href: 'pending', current: false },
 ]
 
 function classNames(...classes) {
@@ -13,6 +14,9 @@ function classNames(...classes) {
 }
 
 export default function NavbarComp() {
+
+  const router= useRouter()
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -30,7 +34,7 @@ export default function NavbarComp() {
               </div>
 
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center hover:cursor-pointer" onClick={()=>{router.push("/")}}>
+                <div className="flex flex-shrink-0 items-center hover:cursor-pointer" onClick={()=>{router.push("/company")}}>
                   <img
                     className="block h-8 w-auto lg:hidden"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
@@ -48,9 +52,9 @@ export default function NavbarComp() {
                     {navigation.map((item) => (
                       <a
                         key={item.name}
-                        href={item.href}
+                        onClick={()=>{router.push("/company/"+item.href)}}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:cursor-pointer hover:text-white',
                           'px-3 py-2 rounded-md text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -84,26 +88,6 @@ export default function NavbarComp() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Settings
-                          </a>
-                        )}
-                      </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
                           <a

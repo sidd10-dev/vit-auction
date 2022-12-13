@@ -1,10 +1,10 @@
 import { Fragment, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, PlusIcon, BellIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, PlusIcon} from '@heroicons/react/24/outline'
 import {Router, useRouter} from 'next/router'
 
 const navigation = [
-  { name: 'Projects', href: '#', current: false },
+  { name: 'Projects', href: '', current: false },
 ]
 
 function classNames(...classes) {
@@ -32,7 +32,7 @@ export default function NavbarCust() {
               </div>
 
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center hover:cursor-pointer" onClick={()=>{router.push("/")}}>
+                <div className="flex flex-shrink-0 items-center hover:cursor-pointer" onClick={()=>{router.push("/customer")}}>
                   <img
                     className="block h-8 w-auto lg:hidden"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
@@ -50,9 +50,9 @@ export default function NavbarCust() {
                     {navigation.map((item) => (
                       <a
                         key={item.name}
-                        href={item.href}
+                        onClick={()=>{router.push("/customer/"+item.href)}}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:cursor-pointer hover:text-white',
                           'px-3 py-2 rounded-md text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
