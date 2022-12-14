@@ -1,13 +1,13 @@
 import {React, useRef, useState}from 'react'
-import NavbarCust from '../../components/navbar-cust'
 import styles from '../../styles/project.module.css'
+import NavbarCust from '../../components/navbar-cust'
+import axios from 'axios';
 
 import {PlusIcon, MinusIcon} from '@heroicons/react/24/outline'
 
 const newProject = () => {
     
-    const nameRef= useRef()
-    const emailRef= useRef()
+    const phoneRef= useRef()
     const pnameRef= useRef()
     const pdescRef= useRef()
     const pfileRef= useRef()
@@ -24,26 +24,28 @@ const newProject = () => {
         event.preventDefault()
     
         try {
+
+            var date = new Date();
+        	var current_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
     
-          const res = await axios.post('http://localhost:3001/api/kyc', {
-            name: nameRef.current.value,
-            email: emailRef.current.value,
-            pname: pnameRef.current.value,
-            pdesc: pdescRef.current.value,
-            pfile: pfileRef.current.value,
-            street: streetRef.current.value,
-            state: stateRef.current.value,
-            city: cityRef.current.value,
-            zip: zipRef.current.value,
-            total: totalRef.current.value,
-            pcs: pcsRef.current.value,
-          })
-    
-    
+            const res = await axios.post('http://localhost:3001/api/new-project', {
+                pname: pnameRef.current.value,
+                pdesc: pdescRef.current.value,
+                pfile: pfileRef.current.value,
+                street: streetRef.current.value,
+                state: stateRef.current.value,
+                city: cityRef.current.value,
+                zip: zipRef.current.value,
+                total: totalRef.current.value,
+                pcs: pcsRef.current.value,
+                date: current_date,
+                components: Form
+            })
+            
         } catch (error) {
           console.log(error)
         }
-      }
+    }
 
     const prevIsValid= ()=> {
         if(Form.length===0){
@@ -102,7 +104,7 @@ const newProject = () => {
     
         if(prevIsValid()){
             setForm((prev)=>[...prev, inputState])
-            
+
             setTimeout(function () {
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
             },2);
@@ -141,9 +143,9 @@ const newProject = () => {
     return (
         <>
             <NavbarCust></NavbarCust>
-            <div className="w-3/4 mx-auto my-10 sm:w-2/3">
+            <div className="w-3/4 mx-auto my-5 sm:w-2/3">
 
-                <div className="p-3 font-head font-light text-2xl flex justify-center items-center sm:text-3xl">
+                <div className="p-8 font-head font-light text-2xl flex justify-center items-center sm:text-4xl">
                     Create New Project
                 </div>
 
@@ -154,44 +156,34 @@ const newProject = () => {
                         <div className="px-4 py-5 sm:p-6">
                             <div className="grid grid-cols-6 gap-6">
                                 <div className="col-span-6 sm:col-span-3">
-                                    <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                                        Name<span className="text-red-500"> *</span>
+                                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                                        Contact No.<span className="text-red-500"> *</span>
                                     </label>
-                                    <input
-                                        type="text"
-                                        name="first-name"
-                                        id="first-name"
-                                        autoComplete="given-name"
-                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        ref={nameRef}
-                                        required
-                                    />
+                                    <div className="mt-1 flex rounded-md shadow-sm">
+                                        <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
+                                            +91
+                                        </span>
+                                        <input
+                                            type="tel"
+                                            name="phone"
+                                            id="phone"
+                                            className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            autoComplete="tel"
+                                            ref={phoneRef}
+                                            pattern="[0-9]{10}"
+                                            required
+                                        />
+                                    </div> 
                                 </div>
 
                                 <div className="col-span-6 sm:col-span-3">
-                                    <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-                                        Email address<span className="text-red-500"> *</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="email-address"
-                                        id="email-address"
-                                        autoComplete="email"
-                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        ref={emailRef}
-                                        required
-                                    />
-                                </div>
-
-                                <div className="col-span-6 sm:col-span-3">
-                                    <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                                    <label htmlFor="proj-name" className="block text-sm font-medium text-gray-700">
                                         Project Name<span className="text-red-500"> *</span>
                                     </label>
                                     <input
                                         type="text"
-                                        name="last-name"
-                                        id="last-name"
-                                        autoComplete="family-name"
+                                        name="proj-name"
+                                        id="proj-name"
                                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         ref={pnameRef}
                                         required
@@ -455,9 +447,10 @@ const newProject = () => {
                                                     name="industry"
                                                     className={`${styles['input']} ${item.errors.industry ? styles['invalid'] : ''}`}    
                                                     onChange={(e)=>onChange(index,e)}
+                                                    defaultValue={"none"}
                                                     required
                                                 >
-                                                    <option selected diabled hidden value="none">Select Industry</option>
+                                                    <option disabled hidden value="none">Select Industry</option>
                                                     <option value="technology">Technology</option>
                                                     <option value="industrial">Industrial</option>
                                                     <option value="software">Software</option>
@@ -467,7 +460,7 @@ const newProject = () => {
 
                                             <div className="col-span-6 sm:col-span-6 lg:col-span-3">
                                                 <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                                                    Total Estimated Budget<span className="text-red-500"> *</span>
+                                                    Asking Price<span className="text-red-500"> *</span>
                                                 </label>
                                                 <div className="mt-1 flex rounded-md shadow-sm">
                                                     <input
@@ -503,8 +496,8 @@ const newProject = () => {
 
                         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                             <button
-                            type="submit"
-                            className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                type="submit"
+                                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                                 Submit
                             </button>
