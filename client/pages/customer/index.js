@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { Router, useRouter } from 'next/router'
 
 import NavbarCust from '../../components/navbar-cust'
 import { Disclosure, Transition } from '@headlessui/react'
@@ -6,6 +7,8 @@ import { ChevronDownIcon, CheckCircleIcon } from '@heroicons/react/20/solid'
 import AnimateHeight from 'react-animate-height';
 
 export default function index() {
+
+  const router= useRouter()
 
   return (
     <>
@@ -28,10 +31,12 @@ export default function index() {
           Component Name
           Component BLueprint
           Component Description
+          Component Asking Price
+          Component Industry
           Status
 
         */}
-        
+
         <div className="w-full px-2">
           <div className="mx-auto w-full rounded-2xl bg-white p-2">
 
@@ -115,7 +120,82 @@ export default function index() {
                                 <p className="text-sm m-1 underline font-bold">
                                   plasticblueprint.docx
                                 </p>
+                              </div> 
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Asking Price:</h1>
+                                <p className="text-sm m-1">
+                                  10000 Rs.
+                                </p>
+                              </div> 
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Industry:</h1>
+                                <p className="text-sm m-1">
+                                  Hardware
+                                </p>
+                              </div>
+                                                            
+                            </div>
+
+                            <button
+                              type="button"
+                              className="w-24 rounded-lg flex justify-center items-center bg-blue-500 p-1.5 text-white text-sm hover:bg-blue-400"
+                              onClick={()=>{ router.push("/customer/bids") }}
+                            >
+                              Check Bids       
+                            </button>
+                            
+                          </div>
+
+                          <div className="p-4 my-4 flex flex-row items-center text-white bg-blue-600 rounded-lg">
+                            <div className="w-full">
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Component Name:</h1>
+                                <p className="text-sm m-1">
+                                  Premium Plastic
+                                </p>
+                              </div>
+                              <div>
+                                <h1 className="text-base font-medium m-1">Component Description:</h1>
+                                <p className="text-sm m-1 indent-2 px-3 py-1">
+                                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                                  Ad, aspernatur dolorem quaerat amet, ipsam aliquam sapiente quos at, 
+                                  deserunt vel odio ipsum beatae provident est alias quasi eum praesentium. 
+                                  Illo nemo nostrum perspiciatis? Sed velit odit eos quae quo repudiandae maxime, 
+                                  aliquam, perferendis voluptatibus ipsum in porro dolor incidunt eligendi.
+                                </p>
+                              </div>
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Component Blueprint:</h1>
+                                <p className="text-sm m-1 underline font-bold">
+                                  plasticblueprint.docx
+                                </p>
                               </div>  
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Asking Price:</h1>
+                                <p className="text-sm m-1">
+                                  10000 Rs.
+                                </p>
+                              </div>
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Industry:</h1>
+                                <p className="text-sm m-1">
+                                  Hardware
+                                </p>
+                              </div>
+                              <div className="flex flex-col items-center pr-2 sm:flex-row justify-between">
+                                <div className="flex flex-row items-center">
+                                  <h1 className="text-base font-medium m-1">Company:</h1>
+                                  <p className="text-sm m-1">
+                                    Hewlett-Packard Ltd.
+                                  </p>
+                                </div>
+                                <div className="flex flex-row items-center">
+                                  <h1 className="text-base font-medium m-1">Agreed Price:</h1>
+                                  <p className="text-sm m-1">
+                                    20000 Rs.
+                                  </p>
+                                </div>
+                              </div>
                                                             
                             </div>
                             <div className="flex items-center">
@@ -152,42 +232,32 @@ export default function index() {
                                   plasticblueprint.docx
                                 </p>
                               </div>  
-                                                            
-                            </div>
-                            <div className="flex items-center">
-                              <div className="mx-2">
-                                Status
-                              </div>
-                              <CheckCircleIcon
-                                className="w-5 h-5 fill-green-400"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="p-4 my-4 flex flex-row items-center text-white bg-blue-600 rounded-lg">
-                            <div className="w-full">
                               <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Component Name:</h1>
+                                <h1 className="text-base font-medium m-1">Asking Price:</h1>
                                 <p className="text-sm m-1">
-                                  Premium Plastic
-                                </p>
-                              </div>
-                              <div>
-                                <h1 className="text-base font-medium m-1">Component Description:</h1>
-                                <p className="text-sm m-1 indent-2 px-3 py-1">
-                                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                                  Ad, aspernatur dolorem quaerat amet, ipsam aliquam sapiente quos at, 
-                                  deserunt vel odio ipsum beatae provident est alias quasi eum praesentium. 
-                                  Illo nemo nostrum perspiciatis? Sed velit odit eos quae quo repudiandae maxime, 
-                                  aliquam, perferendis voluptatibus ipsum in porro dolor incidunt eligendi.
+                                  10000 Rs.
                                 </p>
                               </div>
                               <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Component Blueprint:</h1>
-                                <p className="text-sm m-1 underline font-bold">
-                                  plasticblueprint.docx
+                                <h1 className="text-base font-medium m-1">Industry:</h1>
+                                <p className="text-sm m-1">
+                                  Hardware
                                 </p>
-                              </div>  
+                              </div>
+                              <div className="flex flex-col items-center pr-2 sm:flex-row justify-between">
+                                <div className="flex flex-row items-center">
+                                  <h1 className="text-base font-medium m-1">Company:</h1>
+                                  <p className="text-sm m-1">
+                                    Hewlett-Packard Ltd.
+                                  </p>
+                                </div>
+                                <div className="flex flex-row items-center">
+                                  <h1 className="text-base font-medium m-1">Agreed Price:</h1>
+                                  <p className="text-sm m-1">
+                                    20000 Rs.
+                                  </p>
+                                </div>
+                              </div>
                                                             
                             </div>
                             <div className="flex items-center">
@@ -198,17 +268,15 @@ export default function index() {
                                 className="w-5 h-5 fill-green-400"
                               />
                             </div>
-                          </div>
-
+                          </div>        
                         </div>
-
                       </div>
                     </AnimateHeight>
                     
                   </>
                 )}
               </Disclosure>  
-            </div>     
+            </div>            
 
             <div className="m-3">
               <Disclosure>
@@ -291,6 +359,81 @@ export default function index() {
                                   plasticblueprint.docx
                                 </p>
                               </div>  
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Asking Price:</h1>
+                                <p className="text-sm m-1">
+                                  10000 Rs.
+                                </p>
+                              </div>
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Industry:</h1>
+                                <p className="text-sm m-1">
+                                  Hardware
+                                </p>
+                              </div>
+                                                            
+                            </div>
+
+                            <button
+                              type="button"
+                              className="w-24 rounded-lg flex justify-center items-center bg-blue-500 p-1.5 text-white text-sm hover:bg-blue-400"
+                              onClick={()=>{ router.push("/customer/bids") }}
+                            >
+                              Check Bids       
+                            </button>
+                            
+                          </div>
+
+                          <div className="p-4 my-4 flex flex-row items-center text-white bg-blue-600 rounded-lg">
+                            <div className="w-full">
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Component Name:</h1>
+                                <p className="text-sm m-1">
+                                  Premium Plastic
+                                </p>
+                              </div>
+                              <div>
+                                <h1 className="text-base font-medium m-1">Component Description:</h1>
+                                <p className="text-sm m-1 indent-2 px-3 py-1">
+                                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                                  Ad, aspernatur dolorem quaerat amet, ipsam aliquam sapiente quos at, 
+                                  deserunt vel odio ipsum beatae provident est alias quasi eum praesentium. 
+                                  Illo nemo nostrum perspiciatis? Sed velit odit eos quae quo repudiandae maxime, 
+                                  aliquam, perferendis voluptatibus ipsum in porro dolor incidunt eligendi.
+                                </p>
+                              </div>
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Component Blueprint:</h1>
+                                <p className="text-sm m-1 underline font-bold">
+                                  plasticblueprint.docx
+                                </p>
+                              </div> 
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Asking Price:</h1>
+                                <p className="text-sm m-1">
+                                  10000 Rs.
+                                </p>
+                              </div> 
+                              <div className="flex flex-row items-center">
+                                <h1 className="text-base font-medium m-1">Industry:</h1>
+                                <p className="text-sm m-1">
+                                  Hardware
+                                </p>
+                              </div>
+                              <div className="flex flex-col items-center pr-2 sm:flex-row justify-between">
+                                <div className="flex flex-row items-center">
+                                  <h1 className="text-base font-medium m-1">Company:</h1>
+                                  <p className="text-sm m-1">
+                                    Hewlett-Packard Ltd.
+                                  </p>
+                                </div>
+                                <div className="flex flex-row items-center">
+                                  <h1 className="text-base font-medium m-1">Agreed Price:</h1>
+                                  <p className="text-sm m-1">
+                                    20000 Rs.
+                                  </p>
+                                </div>
+                              </div>
                                                             
                             </div>
                             <div className="flex items-center">
@@ -327,42 +470,32 @@ export default function index() {
                                   plasticblueprint.docx
                                 </p>
                               </div>  
-                                                            
-                            </div>
-                            <div className="flex items-center">
-                              <div className="mx-2">
-                                Status
-                              </div>
-                              <CheckCircleIcon
-                                className="w-5 h-5 fill-green-400"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="p-4 my-4 flex flex-row items-center text-white bg-blue-600 rounded-lg">
-                            <div className="w-full">
                               <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Component Name:</h1>
+                                <h1 className="text-base font-medium m-1">Asking Price:</h1>
                                 <p className="text-sm m-1">
-                                  Premium Plastic
-                                </p>
-                              </div>
-                              <div>
-                                <h1 className="text-base font-medium m-1">Component Description:</h1>
-                                <p className="text-sm m-1 indent-2 px-3 py-1">
-                                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                                  Ad, aspernatur dolorem quaerat amet, ipsam aliquam sapiente quos at, 
-                                  deserunt vel odio ipsum beatae provident est alias quasi eum praesentium. 
-                                  Illo nemo nostrum perspiciatis? Sed velit odit eos quae quo repudiandae maxime, 
-                                  aliquam, perferendis voluptatibus ipsum in porro dolor incidunt eligendi.
+                                  10000 Rs.
                                 </p>
                               </div>
                               <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Component Blueprint:</h1>
-                                <p className="text-sm m-1 underline font-bold">
-                                  plasticblueprint.docx
+                                <h1 className="text-base font-medium m-1">Industry:</h1>
+                                <p className="text-sm m-1">
+                                  Hardware
                                 </p>
-                              </div>  
+                              </div>
+                              <div className="flex flex-col items-center pr-2 sm:flex-row justify-between">
+                                <div className="flex flex-row items-center">
+                                  <h1 className="text-base font-medium m-1">Company:</h1>
+                                  <p className="text-sm m-1">
+                                    Hewlett-Packard Ltd.
+                                  </p>
+                                </div>
+                                <div className="flex flex-row items-center">
+                                  <h1 className="text-base font-medium m-1">Agreed Price:</h1>
+                                  <p className="text-sm m-1">
+                                    20000 Rs.
+                                  </p>
+                                </div>
+                              </div>
                                                             
                             </div>
                             <div className="flex items-center">
@@ -374,20 +507,18 @@ export default function index() {
                               />
                             </div>
                           </div>
-
                         </div>
 
                       </div>
                     </AnimateHeight>
-                    
                   </>
                 )}
               </Disclosure>  
-            </div>     
-            
+            </div>                 
                          
           </div>
         </div>
+
       </div>
     </>
   )

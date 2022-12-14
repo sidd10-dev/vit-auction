@@ -22,7 +22,7 @@ module.exports = {
         sans: ['Nunito', 'Segoe UI', 'Arial', 'Helvetica', 'Arial', 'sans-serif'],
         'mono': ['Arial', 'Helvetica', 'Arial', 'sans-serif'],
         head: ['Source Sans Pro']
-      }
+      },
     }
   },
   plugins: [

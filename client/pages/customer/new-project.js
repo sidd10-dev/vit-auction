@@ -45,7 +45,7 @@ const newProject = () => {
         } catch (error) {
           console.log(error)
         }
-      }
+    }
 
     const prevIsValid= ()=> {
         if(Form.length===0){
@@ -460,7 +460,7 @@ const newProject = () => {
 
                                             <div className="col-span-6 sm:col-span-6 lg:col-span-3">
                                                 <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                                                    Total Estimated Budget<span className="text-red-500"> *</span>
+                                                    Asking Price<span className="text-red-500"> *</span>
                                                 </label>
                                                 <div className="mt-1 flex rounded-md shadow-sm">
                                                     <input
@@ -496,8 +496,8 @@ const newProject = () => {
 
                         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                             <button
-                            type="submit"
-                            className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                type="submit"
+                                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                                 Submit
                             </button>
