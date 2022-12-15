@@ -4,6 +4,7 @@ import NavbarCust from '../../components/navbar-cust'
 import axios from 'axios';
 
 import { PlusIcon, MinusIcon } from '@heroicons/react/24/outline'
+import { Router, useRouter } from 'next/router'
 
 const newProject = () => {
 
@@ -18,6 +19,8 @@ const newProject = () => {
     const totalRef = useRef()
     const pcsRef = useRef()
 
+    const router= useRouter()
+
     const [Form, setForm] = useState([])
 
     const newProjectEventHandler = async (event) => {
@@ -29,6 +32,9 @@ const newProject = () => {
             var current_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
             console.log("Hello")
             console.log(pfileRef.current.value.buffer)
+
+            router.push("/customer")
+
             const res = await axios.post('http://localhost:3000/api/create-project', {
                 name: pnameRef.current.value,
                 debrief: pdescRef.current.value,
@@ -42,7 +48,6 @@ const newProject = () => {
                 phone: phoneRef.current.value,
                 components: Form
             })
-
 
         } catch (error) {
             console.log(error)
@@ -148,9 +153,9 @@ const newProject = () => {
             <NavbarCust></NavbarCust>
             <div className="w-3/4 mx-auto my-5 sm:w-2/3">
 
-                <div className="p-8 font-head font-light text-2xl flex justify-center items-center sm:text-4xl">
-                    Create New Project
-                </div>
+            <div className="font-head text-3xl p-5 mx-5 flex items-center justify-center">
+                Create New Project
+            </div>
 
 
                 <form className="bg-white rounded-lg" action='POST' onSubmit={newProjectEventHandler}>
@@ -336,13 +341,10 @@ const newProject = () => {
                                             type="number"
                                             name="company-website"
                                             id="company-website"
-                                            className="block w-full z-10 flex-1 rounded-none rounded-l-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            className="block w-full z-10 flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             ref={pcsRef}
                                             required
                                         />
-                                        <span className="inline-flex items-center rounded-r-md border border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
-                                            Rs.
-                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -381,7 +383,7 @@ const newProject = () => {
                                                 type="text"
                                                 name="compname"
                                                 id="compname"
-                                                className={`${styles['input-box']} ${item.errors.compname ? styles['invalid'] : ''}`}
+                                                className={`${styles['input-box']} ${item.errors.name ? styles['invalid'] : ''}`}
                                                 onChange={(e) => onChange(index, e)}
                                                 required
                                             />
@@ -470,7 +472,7 @@ const newProject = () => {
                                                         type="number"
                                                         name="compbud"
                                                         id="compbud"
-                                                        className={`${styles['input-box-2']} ${item.errors.compbud ? styles['invalid'] : ''}`}
+                                                        className={`${styles['input-box-2']} ${item.errors.price ? styles['invalid'] : ''}`}
                                                         onChange={(e) => onChange(index, e)}
                                                         required
                                                     />

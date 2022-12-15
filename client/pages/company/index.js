@@ -1,14 +1,8 @@
 import NavbarComp from "../../components/navbar-comp"
 
-import { React, Fragment } from 'react'
-import { Router, useRouter } from 'next/router'
-
-import { Disclosure, Dialog, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import AnimateHeight from 'react-animate-height';
+import { React } from 'react'
 
 export default function index() {
-  const router= useRouter()
 
   return (
     <>

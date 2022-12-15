@@ -1,13 +1,11 @@
-import { React, Fragment } from 'react'
-import { Router, useRouter } from 'next/router'
+import { React } from 'react'
 
 import NavbarComp from '../../components/navbar-comp'
-import { Disclosure, Dialog, Transition } from '@headlessui/react'
+import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import AnimateHeight from 'react-animate-height';
 
 const Pending = () => {
-    const router= useRouter()
 
     return (
     <>

@@ -3,7 +3,7 @@ import { Router, useRouter } from 'next/router'
 
 import NavbarComp from '../../components/navbar-comp'
 import { Disclosure, Dialog, Transition } from '@headlessui/react'
-import { ChevronDownIcon, CheckCircleIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import AnimateHeight from 'react-animate-height';
 
 const Market = () => {
