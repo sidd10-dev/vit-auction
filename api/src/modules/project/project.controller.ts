@@ -2,6 +2,7 @@ import { Controller, Post, UseInterceptors, UploadedFiles, Body } from "@nestjs/
 import { FileInterceptor } from "@nestjs/platform-express";
 import { FilesInterceptor } from "@nestjs/platform-express/multer";
 import { createProjectDto } from "./dto/createproject.dto";
+import { ProjectEntity } from "./project.entity";
 import { ProjectService } from "./project.service";
 
 @Controller()
@@ -11,6 +12,10 @@ export class ProjectController {
   @Post('api/create-project')
   @UseInterceptors(FilesInterceptor('files'))
   async createProject(@UploadedFiles() files: Array<Express.Multer.File>, @Body() createProjectDto: createProjectDto): Promise<any> {
-    
+    try {
+      await this.projectService.createProject(files, createProjectDto)
+    } catch (e) {
+      throw e
+    }
   }
 }

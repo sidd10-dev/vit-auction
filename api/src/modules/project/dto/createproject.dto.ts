@@ -1,6 +1,7 @@
 import { IsNotEmpty } from "class-validator";
 import { IsAlpha, IsAlphanumeric, IsMobilePhone, IsNumber } from "class-validator/types/decorator/decorators";
 import { ComponentEntity } from "src/modules/project/component.entity";
+import { createComponentDto } from "./createComponent.dto";
 
 export class createProjectDto {
   @IsNotEmpty()
@@ -40,5 +41,5 @@ export class createProjectDto {
   quantity: number
 
   @IsNotEmpty()
-  components: ComponentEntity[]
+  components: createComponentDto[]
 }
