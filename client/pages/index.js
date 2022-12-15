@@ -40,7 +40,7 @@ const features = [
 ]
 
 
-export default function Example() {
+export default function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [cursorX, setCursorX] = useState()
   const [cursorY, setCursorY] = useState()
@@ -308,14 +308,7 @@ export default function Example() {
         </div>
       </div>
     </div>
-
-
-
-
     </div>
 
-
-
-    
   )
 }

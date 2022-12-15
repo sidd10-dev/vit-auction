@@ -6,7 +6,7 @@ import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon, CheckCircleIcon } from '@heroicons/react/20/solid'
 import AnimateHeight from 'react-animate-height';
 
-export default function index() {
+export default function Index() {
 
   const router= useRouter()
 

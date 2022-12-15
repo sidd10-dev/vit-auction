@@ -6,7 +6,7 @@ import axios from 'axios';
 import { PlusIcon, MinusIcon } from '@heroicons/react/24/outline'
 import { Router, useRouter } from 'next/router'
 
-const newProject = () => {
+const NewProject = () => {
 
     const phoneRef = useRef()
     const pnameRef = useRef()
@@ -515,4 +515,4 @@ const newProject = () => {
     )
 }
 
-export default newProject
+export default NewProject
