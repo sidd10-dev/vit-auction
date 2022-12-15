@@ -1,55 +1,57 @@
-import {React, useRef, useState}from 'react'
+import { React, useRef, useState } from 'react'
 import styles from '../../styles/project.module.css'
 import NavbarCust from '../../components/navbar-cust'
 import axios from 'axios';
 
-import {PlusIcon, MinusIcon} from '@heroicons/react/24/outline'
+import { PlusIcon, MinusIcon } from '@heroicons/react/24/outline'
 
 const newProject = () => {
-    
-    const phoneRef= useRef()
-    const pnameRef= useRef()
-    const pdescRef= useRef()
-    const pfileRef= useRef()
-    const streetRef= useRef()
-    const stateRef= useRef()
-    const cityRef= useRef()
-    const zipRef= useRef()
-    const totalRef= useRef()
-    const pcsRef= useRef()
 
-    const [Form, setForm]= useState([])
+    const phoneRef = useRef()
+    const pnameRef = useRef()
+    const pdescRef = useRef()
+    const pfileRef = useRef()
+    const streetRef = useRef()
+    const stateRef = useRef()
+    const cityRef = useRef()
+    const zipRef = useRef()
+    const totalRef = useRef()
+    const pcsRef = useRef()
+
+    const [Form, setForm] = useState([])
 
     const newProjectEventHandler = async (event) => {
         event.preventDefault()
-    
+
         try {
 
             var date = new Date();
-        	var current_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
-    
-            const res = await axios.post('http://localhost:3001/api/new-project', {
-                pname: pnameRef.current.value,
-                pdesc: pdescRef.current.value,
-                pfile: pfileRef.current.value,
-                street: streetRef.current.value,
+            var current_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+            console.log("Hello")
+            console.log(pfileRef.current.value.buffer)
+            const res = await axios.post('http://localhost:3000/api/create-project', {
+                name: pnameRef.current.value,
+                debrief: pdescRef.current.value,
+                address: streetRef.current.value,
                 state: stateRef.current.value,
                 city: cityRef.current.value,
-                zip: zipRef.current.value,
-                total: totalRef.current.value,
-                pcs: pcsRef.current.value,
+                pincode: zipRef.current.value,
+                budget: totalRef.current.value,
+                quantity: pcsRef.current.value,
                 date: current_date,
+                phone: phoneRef.current.value,
                 components: Form
             })
-            
+
+
         } catch (error) {
-          console.log(error)
+            console.log(error)
         }
     }
 
-    const prevIsValid= ()=> {
-        if(Form.length===0){
-          return true;
+    const prevIsValid = () => {
+        if (Form.length === 0) {
+            return true;
         }
     
         const someEmpty= Form.some(
@@ -82,11 +84,11 @@ const newProject = () => {
             setForm(allPrev)
           });
         }
-    
+
         return !someEmpty;
     };
 
-    const handleAddLink= (e)=>{
+    const handleAddLink = (e) => {
         e.preventDefault();
     
         const inputState= {
@@ -94,50 +96,50 @@ const newProject = () => {
             desc: '',
             industry: '',
             price: '',
-            
-            errors:{
+
+            errors: {
                 name: null,
                 desc: null,
                 industry: null,
                 price: null,
             }
         };
-    
-        if(prevIsValid()){
-            setForm((prev)=>[...prev, inputState])
+
+        if (prevIsValid()) {
+            setForm((prev) => [...prev, inputState])
 
             setTimeout(function () {
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-            },2);
+            }, 2);
         }
     }
-    
-    const handleRemoveLink= (e, index)=>{
+
+    const handleRemoveLink = (e, index) => {
         e.preventDefault();
-        
-        setForm((prev)=>prev.filter((item)=> item!==prev[index]));
+
+        setForm((prev) => prev.filter((item) => item !== prev[index]));
     }
 
-    const onChange= (index,event)=>{
+    const onChange = (index, event) => {
         event.preventDefault();
         event.persist();
-    
-        setForm(prev=>{
-          return prev.map((item,i)=>{
-            if(i!=index){
-              return item
-            }
-    
-            return {
-              ...item,
-              [event.target.name]: event.target.value,
-    
-              errors: {
-                ...item.errors,
-                [event.target.name]: event.target.value.length > 0 ? null : [event.target.name] + ' is Required',
-              }
-            };
-          });
+
+        setForm(prev => {
+            return prev.map((item, i) => {
+                if (i != index) {
+                    return item
+                }
+
+                return {
+                    ...item,
+                    [event.target.name]: event.target.value,
+
+                    errors: {
+                        ...item.errors,
+                        [event.target.name]: event.target.value.length > 0 ? null : [event.target.name] + ' is Required',
+                    }
+                };
+            });
         });
     }
 
@@ -174,7 +176,7 @@ const newProject = () => {
                                             pattern="[0-9]{10}"
                                             required
                                         />
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div className="col-span-6 sm:col-span-3">
@@ -216,31 +218,31 @@ const newProject = () => {
                                     <label className="block text-sm font-medium text-gray-700">Project Blueprint<span className="text-red-500"> *</span></label>
                                     <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                         <div className="space-y-1 text-center">
-                                        <svg
-                                            className="mx-auto h-12 w-12 text-gray-400"
-                                            stroke="currentColor"
-                                            fill="none"
-                                            viewBox="0 0 48 48"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                strokeWidth={2}
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                        <div className="flex text-sm text-gray-600">
-                                            <label
-                                                htmlFor="file-upload"
-                                                className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                                            <svg
+                                                className="mx-auto h-12 w-12 text-gray-400"
+                                                stroke="currentColor"
+                                                fill="none"
+                                                viewBox="0 0 48 48"
+                                                aria-hidden="true"
                                             >
-                                            <span>Upload files</span>
-                                            <input id="file-upload" name="file-upload" type="file" className="sr-only" ref={pfileRef} required/>
-                                            </label>
-                                            <p className="pl-1">or drag and drop</p>
-                                        </div>
-                                        <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                                <path
+                                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                            </svg>
+                                            <div className="flex text-sm text-gray-600">
+                                                <label
+                                                    htmlFor="file-upload"
+                                                    className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                                                >
+                                                    <span>Upload files</span>
+                                                    <input id="file-upload" name="file-upload" type="file" className="sr-only" ref={pfileRef} required />
+                                                </label>
+                                                <p className="pl-1">or drag and drop</p>
+                                            </div>
+                                            <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                                         </div>
                                     </div>
                                 </div>
@@ -329,7 +331,7 @@ const newProject = () => {
                                         Number of Pcs Needed<span className="text-red-500"> *</span>
                                     </label>
                                     <div className="mt-1 flex rounded-md shadow-sm">
-                                        
+
                                         <input
                                             type="number"
                                             name="company-website"
@@ -344,16 +346,16 @@ const newProject = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>    
+                        </div>
 
                         {/* <div className={styles.coloring}>
                             {JSON.stringify(Form)}
                         </div> */}
 
                         {
-                            Form.map((item,index)=>(
+                            Form.map((item, index) => (
                                 <div key={`item-${index}`}>
-                                    
+
                                     <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                                         <div className="hidden sm:block" aria-hidden="true">
                                             <div className="p-5">
@@ -367,7 +369,7 @@ const newProject = () => {
                                                 className="rounded-lg flex items-center justify-center bg-red-500 p-1.5 text-white text-sm hover:bg-red-400"
                                                 onClick={(e) => handleRemoveLink(e, index)}
                                             >
-                                                <MinusIcon className="h-5 w-5 m-1" aria-hidden="true" /> Remove Component       
+                                                <MinusIcon className="h-5 w-5 m-1" aria-hidden="true" /> Remove Component
                                             </button>
                                         </div>
 
@@ -379,8 +381,8 @@ const newProject = () => {
                                                 type="text"
                                                 name="compname"
                                                 id="compname"
-                                                className={`${styles['input-box']} ${item.errors.compname ? styles['invalid'] : ''}`}    
-                                                onChange={(e)=>onChange(index,e)}
+                                                className={`${styles['input-box']} ${item.errors.compname ? styles['invalid'] : ''}`}
+                                                onChange={(e) => onChange(index, e)}
                                                 required
                                             />
                                         </div>
@@ -394,8 +396,8 @@ const newProject = () => {
                                                     id="desc"
                                                     name="desc"
                                                     rows={4}
-                                                    className={`${styles['input-box']} ${item.errors.desc ? styles['invalid'] : ''}`}    
-                                                    onChange={(e)=>onChange(index,e)}
+                                                    className={`${styles['input-box']} ${item.errors.desc ? styles['invalid'] : ''}`}
+                                                    onChange={(e) => onChange(index, e)}
                                                     placeholder="Describe component"
                                                     defaultValue={''}
                                                     required
@@ -407,33 +409,33 @@ const newProject = () => {
                                             <label className="block text-sm font-medium text-gray-700">Component Blueprint</label>
                                             <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                                 <div className="space-y-1 text-center">
-                                                <svg
-                                                    className="mx-auto h-12 w-12 text-gray-400"
-                                                    stroke="currentColor"
-                                                    fill="none"
-                                                    viewBox="0 0 48 48"
-                                                    aria-hidden="true"
-                                                >
-                                                    <path
-                                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                    strokeWidth={2}
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    />
-                                                </svg>
-                                                <div className="flex text-sm text-gray-600">
-                                                    <label
-                                                        htmlFor="file-upload"
-                                                        className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                                                    <svg
+                                                        className="mx-auto h-12 w-12 text-gray-400"
+                                                        stroke="currentColor"
+                                                        fill="none"
+                                                        viewBox="0 0 48 48"
+                                                        aria-hidden="true"
                                                     >
-                                                    <span>Upload files</span>
-                                                    <input id="compfile" name="compfile" type="file" 
-                                                        className={`${styles['read']} ${item.errors.compfile ? styles['invalid'] : ''}`}    
-                                                        onChange={(e)=>onChange(index,e)} />
-                                                    </label>
-                                                    <p className="pl-1">or drag and drop</p>
-                                                </div>
-                                                <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                                        <path
+                                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                            strokeWidth={2}
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        />
+                                                    </svg>
+                                                    <div className="flex text-sm text-gray-600">
+                                                        <label
+                                                            htmlFor="file-upload"
+                                                            className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                                                        >
+                                                            <span>Upload files</span>
+                                                            <input id="compfile" name="compfile" type="file"
+                                                                className={`${styles['read']} ${item.errors.compfile ? styles['invalid'] : ''}`}
+                                                                onChange={(e) => onChange(index, e)} />
+                                                        </label>
+                                                        <p className="pl-1">or drag and drop</p>
+                                                    </div>
+                                                    <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -446,8 +448,8 @@ const newProject = () => {
                                                 <select
                                                     id="industry"
                                                     name="industry"
-                                                    className={`${styles['input']} ${item.errors.industry ? styles['invalid'] : ''}`}    
-                                                    onChange={(e)=>onChange(index,e)}
+                                                    className={`${styles['input']} ${item.errors.industry ? styles['invalid'] : ''}`}
+                                                    onChange={(e) => onChange(index, e)}
                                                     defaultValue={"none"}
                                                     required
                                                 >
@@ -468,8 +470,8 @@ const newProject = () => {
                                                         type="number"
                                                         name="compbud"
                                                         id="compbud"
-                                                        className={`${styles['input-box-2']} ${item.errors.compbud ? styles['invalid'] : ''}`}    
-                                                        onChange={(e)=>onChange(index,e)}
+                                                        className={`${styles['input-box-2']} ${item.errors.compbud ? styles['invalid'] : ''}`}
+                                                        onChange={(e) => onChange(index, e)}
                                                         required
                                                     />
                                                     <span className="inline-flex items-center rounded-r-md border border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
@@ -491,7 +493,7 @@ const newProject = () => {
                                 className="mx-3 rounded-lg flex items-center justify-center bg-green-500 p-1.5 text-white text-sm hover:bg-green-400"
                                 onClick={handleAddLink}
                             >
-                                <PlusIcon className="h-5 w-5 m-1" aria-hidden="true" /> Add Component       
+                                <PlusIcon className="h-5 w-5 m-1" aria-hidden="true" /> Add Component
                             </button>
                         </div>
 
