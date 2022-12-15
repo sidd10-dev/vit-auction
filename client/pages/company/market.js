@@ -26,6 +26,8 @@ const Market = () => {
     
         try {
 
+            router.push("/company")
+
             const res = await axios.post('http://localhost:3001/api/make-bid', {
                 bid: bidamtRef.current.value,
             })
@@ -66,7 +68,7 @@ const Market = () => {
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="p-1 flex w-full justify-between items-center rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                    <Disclosure.Button className="p-1 flex w-full justify-between items-center rounded-lg bg-sky-800 px-4 py-2 text-left text-sm font-medium text-sky-200 hover:bg-sky-900 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                       <div className="w-full p-4 text-base sm:text-lg">
                         <div>
                             Project Name: Gaming Mouse
@@ -81,7 +83,7 @@ const Market = () => {
                       <ChevronDownIcon
                         className={`${
                           open ? 'transition-all rotate-180 transform' : 'transition-all'
-                        } h-10 w-10 text-purple-500`}
+                        } h-10 w-10 text-sky-200`}
                       />
                     </Disclosure.Button>
 
@@ -91,17 +93,17 @@ const Market = () => {
                       duration={500}
                       height={open ? 'auto': 0} 
                     >
-                      <div className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                      <div className="px-4 pt-4 pb-2 text-sm text-black">
                         <div>
                             <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Total Budget:</h1>
-                                <p className="text-sm m-1">
+                                <h1 className="text-lg font-medium m-1">Total Budget:</h1>
+                                <p className="text-base m-1">
                                     200000 Rs.
                                 </p>
                             </div>
                             <div>
-                                <h1 className="text-base font-medium m-1">Project Description:</h1>
-                                <p className="text-sm m-1 indent-2 px-3 py-1">
+                                <h1 className="text-lg font-medium m-1">Project Description:</h1>
+                                <p className="text-base m-1 indent-2 px-3 py-1">
                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                                     Ad, aspernatur dolorem quaerat amet, ipsam aliquam sapiente quos at, 
                                     deserunt vel odio ipsum beatae provident est alias quasi eum praesentium. 
@@ -110,20 +112,20 @@ const Market = () => {
                                 </p>
                             </div>
                             <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Project Blueprint:</h1>
-                                <p className="text-sm m-1 underline font-bold">
+                                <h1 className="text-lg font-medium m-1">Project Blueprint:</h1>
+                                <p className="text-base m-1 underline font-bold">
                                     blueprint.docx
                                 </p>
                             </div>
                             <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Pieces Needed:</h1>
-                                <p className="text-sm m-1">
+                                <h1 className="text-lg font-medium m-1">Pieces Needed:</h1>
+                                <p className="text-base m-1">
                                     1000
                                 </p>
                             </div>
                             <div>
-                                <h1 className="text-base font-medium m-1">Component Description:</h1>
-                                <p className="text-sm m-1 indent-2 px-3 py-1">
+                                <h1 className="text-lg font-medium m-1">Component Description:</h1>
+                                <p className="text-base m-1 indent-2 px-3 py-1">
                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                                     Ad, aspernatur dolorem quaerat amet, ipsam aliquam sapiente quos at, 
                                     deserunt vel odio ipsum beatae provident est alias quasi eum praesentium. 
@@ -132,8 +134,8 @@ const Market = () => {
                                 </p>
                             </div>
                             <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Component Blueprint:</h1>
-                                <p className="text-sm m-1 underline font-bold">
+                                <h1 className="text-lg font-medium m-1">Component Blueprint:</h1>
+                                <p className="text-base m-1 underline font-bold">
                                     plasticblueprint.docx
                                 </p>
                             </div>
@@ -141,7 +143,7 @@ const Market = () => {
                             <div className="flex items-center justify-end pt-5 pr-5">
                                 <button
                                     type="button"
-                                    className="px-4 py-2 rounded-lg flex justify-center items-center bg-green-500 text-white text-sm hover:bg-green-400"
+                                    className="px-4 py-2 rounded-lg flex justify-center items-center bg-green-500 text-white text-base hover:bg-green-400"
                                     onClick={openModal}
                                 >
                                     Make Bid   
@@ -224,7 +226,6 @@ const Market = () => {
                                         <button
                                             type="submit"
                                             className="m-1 inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none"
-                                            onClick={()=>{ router.push("/company") }}
                                         >
                                             Post
                                         </button>

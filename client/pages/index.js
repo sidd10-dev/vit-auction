@@ -44,7 +44,6 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [cursorX, setCursorX] = useState()
   const [cursorY, setCursorY] = useState()
-  
   setTimeout(function () {
     window.addEventListener('mousemove', (e) => {
       setCursorX(e.pageX)

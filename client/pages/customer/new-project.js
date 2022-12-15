@@ -54,28 +54,29 @@ const newProject = () => {
     
         const someEmpty= Form.some(
           (item) => item.industry === '' ||
-          item.desc === '' || item.compname === '' ||
-          item.compbud === ''
+          item.desc === '' || item.name === '' ||
+          item.price === ''
         );
     
         if(someEmpty){
           Form.map((item, index)=>{
             const allPrev= [...Form]
     
+            if(Form[index].name == ''){
+              allPrev[index].errors.name = 'Component Name is Required'; 
+            }
+
+            
+            if(Form[index].desc == ''){
+                allPrev[index].errors.desc = 'Description is Required'; 
+            }
+            
             if(Form[index].industry == ''){
               allPrev[index].errors.industry = 'Industry is Required'; 
             }
             
-            if(Form[index].desc == ''){
-              allPrev[index].errors.desc = 'Description is Required'; 
-            }
-            
-            if(Form[index].compname == ''){
-              allPrev[index].errors.compname = 'Component Name is Required'; 
-            }
-            
-            if(Form[index].compname == ''){
-              allPrev[index].errors.compbud = 'Component Budget is Required'; 
+            if(Form[index].price == ''){
+              allPrev[index].errors.price = 'Component Budget is Required'; 
             }
     
             setForm(allPrev)
@@ -89,16 +90,16 @@ const newProject = () => {
         e.preventDefault();
     
         const inputState= {
-            industry: '',
+            name: '',
             desc: '',
-            compname: '',
-            compbud: '',
+            industry: '',
+            price: '',
             
             errors:{
-                industry: null,
+                name: null,
                 desc: null,
-                compname: null,
-                compbud: null,
+                industry: null,
+                price: null,
             }
         };
     

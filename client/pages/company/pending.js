@@ -42,7 +42,7 @@ const Pending = () => {
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="p-1 flex w-full justify-between items-center rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                    <Disclosure.Button className="p-1 flex w-full justify-between items-center rounded-lg bg-sky-800 px-4 py-2 text-left text-sm font-medium text-sky-200 hover:bg-sky-900 focus:outline-none focus-visible:ring focus-visible:ring-opacity-75">
                       <div className="w-full p-4 text-base sm:text-lg">
                         <div>
                             Project Name: Gaming Mouse
@@ -57,7 +57,7 @@ const Pending = () => {
                       <ChevronDownIcon
                         className={`${
                           open ? 'transition-all rotate-180 transform' : 'transition-all'
-                        } h-10 w-10 text-purple-500`}
+                        } h-10 w-10 text-sky-200`}
                       />
                     </Disclosure.Button>
 
@@ -67,18 +67,18 @@ const Pending = () => {
                       duration={500}
                       height={open ? 'auto': 0} 
                     >
-                      <div className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                      <div className="px-4 pt-4 pb-2 text-sm text-black">
                         <div>
                             <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Contact Number:</h1>
-                                <p className="text-sm m-1">
+                                <h1 className="text-lg font-medium m-1">Contact Number:</h1>
+                                <p className="text-base m-1">
                                     +91 7358171473
                                 </p>
                             </div>
                             
                             <div>
-                                <h1 className="text-base font-medium m-1">Address:</h1>
-                                <p className="text-sm m-1 indent-2 px-3 py-1">
+                                <h1 className="text-lg font-medium m-1">Address:</h1>
+                                <p className="text-base m-1 indent-2 px-3 py-1">
                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                                     Ad, aspernatur dolorem quaerat amet, ipsam aliquam sapiente quos at, 
                                 </p>
@@ -86,42 +86,42 @@ const Pending = () => {
 
                             <div className="mb-4 flex items-center justify-between">
                                 <div className="flex flex-row items-center">
-                                    <h1 className="text-base font-medium m-1">City:</h1>
-                                    <p className="text-sm m-1">
+                                    <h1 className="text-lg font-medium m-1">City:</h1>
+                                    <p className="text-base m-1">
                                         Chennai
                                     </p>
                                 </div>
                                 <div className="flex flex-row items-center">
-                                    <h1 className="text-base font-medium m-1">State:</h1>
-                                    <p className="text-sm m-1">
+                                    <h1 className="text-lg font-medium m-1">State:</h1>
+                                    <p className="text-base m-1">
                                     TamilNadu
                                     </p>
                                 </div>
                                 <div className="flex flex-row items-center">
-                                    <h1 className="text-base font-medium m-1">ZipCode:</h1>
-                                    <p className="text-sm m-1">
+                                    <h1 className="text-lg font-medium m-1">ZipCode:</h1>
+                                    <p className="text-base m-1">
                                         600056
                                     </p>
                                 </div>
                             </div>
 
                             <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Total Budget:</h1>
-                                <p className="text-sm m-1">
+                                <h1 className="text-lg font-medium m-1">Total Budget:</h1>
+                                <p className="text-base m-1">
                                     200000 Rs.
                                 </p>
                             </div>
 
                             <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Pieces Needed:</h1>
-                                <p className="text-sm m-1">
+                                <h1 className="text-lg font-medium m-1">Pieces Needed:</h1>
+                                <p className="text-base m-1">
                                     1000
                                 </p>
                             </div>
                             
                             <div>
-                                <h1 className="text-base font-medium m-1">Project Description:</h1>
-                                <p className="text-sm m-1 indent-2 px-3 py-1">
+                                <h1 className="text-lg font-medium m-1">Project Description:</h1>
+                                <p className="text-base m-1 indent-2 px-3 py-1">
                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                                     Ad, aspernatur dolorem quaerat amet, ipsam aliquam sapiente quos at, 
                                     deserunt vel odio ipsum beatae provident est alias quasi eum praesentium. 
@@ -131,15 +131,15 @@ const Pending = () => {
                             </div>
 
                             <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Project Blueprint:</h1>
-                                <p className="text-sm m-1 underline font-bold">
+                                <h1 className="text-lg font-medium m-1">Project Blueprint:</h1>
+                                <p className="text-base m-1 underline font-bold">
                                     blueprint.docx
                                 </p>
                             </div>
                             
                             <div>
-                                <h1 className="text-base font-medium m-1">Component Description:</h1>
-                                <p className="text-sm m-1 indent-2 px-3 py-1">
+                                <h1 className="text-lg font-medium m-1">Component Description:</h1>
+                                <p className="text-base m-1 indent-2 px-3 py-1">
                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                                     Ad, aspernatur dolorem quaerat amet, ipsam aliquam sapiente quos at, 
                                     deserunt vel odio ipsum beatae provident est alias quasi eum praesentium. 
@@ -149,8 +149,8 @@ const Pending = () => {
                             </div>
 
                             <div className="flex flex-row items-center">
-                                <h1 className="text-base font-medium m-1">Component Blueprint:</h1>
-                                <p className="text-sm m-1 underline font-bold">
+                                <h1 className="text-lg font-medium m-1">Component Blueprint:</h1>
+                                <p className="text-base m-1 underline font-bold">
                                     plasticblueprint.docx
                                 </p>
                             </div>

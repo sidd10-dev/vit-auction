@@ -28,7 +28,7 @@ export default function index() {
           <div className="mx-auto w-full rounded-2xl bg-white p-2">
 
             <div className="m-3">
-              <div className="p-1 flex w-full justify-between items-center rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+              <div className="p-1 flex w-full justify-between items-center rounded-lg bg-sky-800 px-4 py-2 text-left text-sm font-medium text-sky-200">
                 <div className="w-full p-4 text-base sm:text-lg">
                   <div>
                       Project Name: Gaming Mouse
@@ -44,7 +44,7 @@ export default function index() {
             </div>          
                               
             <div className="m-3">
-              <div className="p-1 flex w-full justify-between items-center rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+              <div className="p-1 flex w-full justify-between items-center rounded-lg bg-sky-800 px-4 py-2 text-left text-sm font-medium text-sky-200">
                 <div className="w-full p-4 text-base sm:text-lg">
                   <div>
                       Project Name: Gaming Mouse
