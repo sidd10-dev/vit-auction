@@ -1,7 +1,8 @@
-import { React, useRef, useState } from 'react'
+import { React, useRef, useState, useForm } from 'react'
 import styles from '../../styles/project.module.css'
 import NavbarCust from '../../components/navbar-cust'
 import axios from 'axios';
+import FormData from 'form-data'
 
 import { PlusIcon, MinusIcon } from '@heroicons/react/24/outline'
 import { Router, useRouter } from 'next/router'
@@ -22,12 +23,15 @@ const NewProject = () => {
     const router = useRouter()
 
     const [Form, setForm] = useState([])
+    const state = {
+        files: null
+    }
+    
+    const handleFile= (e)=> {
+        let f = e.target.files;
+        state.files= ({ f });
 
-    const config = {
-        headers: { 'content-type': 'multipart/form-data' },
-        onUploadProgress: (event) => {
-          console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total));
-        },
+        console.log(state.files)
     }
 
     const newProjectEventHandler = async (event) => {
@@ -36,9 +40,21 @@ const NewProject = () => {
         try {
             var date = new Date();
             var current_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+
+            // formData.append('operations', '{"query": "mutation singleUpload($file: Upload!) {singleUpload(file: $file) {message}}", "variables":{"file": null}}')
+            // formData.append('map', '{"0": ["variables.file"]}')
+            // formData.append('0', event.picture[0])
+
+            // formData.append('name', )
+            let files = state.files;
+  
+            let formData = new FormData();
+            formData.append('file', files)
+
             console.log({
                 name: pnameRef.current.value,
                 debrief: pdescRef.current.value,
+                blueprint: formData,
                 address: streetRef.current.value,
                 state: stateRef.current.value,
                 city: cityRef.current.value,
@@ -49,24 +65,23 @@ const NewProject = () => {
                 phone: phoneRef.current.value,
                 components: Form
             })
-            console.log(pfileRef.current.value.buffer)
-            // router.push("/customer")
 
-            const response = await axios.post('/api/uploads', formData, config);
-
-            const res = await axios.post('http://localhost:3000/api/create-project', {
-                name: pnameRef.current.value,
-                debrief: pdescRef.current.value,
-                address: streetRef.current.value,
-                state: stateRef.current.value,
-                city: cityRef.current.value,
-                pincode: zipRef.current.value,
-                budget: totalRef.current.value,
-                quantity: pcsRef.current.value,
-                date: current_date,
-                phone: phoneRef.current.value,
-                components: Form
-            })
+            // const res = await axios.post('http://localhost:3000/api/create-project', formData, {
+            //     headers: { 
+            //         'content-type': 'multipart/form-data' 
+            //     },
+            //     name: pnameRef.current.value,
+            //     debrief: pdescRef.current.value,
+            //     address: streetRef.current.value,
+            //     state: stateRef.current.value,
+            //     city: cityRef.current.value,
+            //     pincode: zipRef.current.value,
+            //     budget: totalRef.current.value,
+            //     quantity: pcsRef.current.value,
+            //     date: current_date,
+            //     phone: phoneRef.current.value,
+            //     components: Form
+            // })
 
         } catch (error) {
             console.log(error)
@@ -262,7 +277,7 @@ const NewProject = () => {
                                                     className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                                 >
                                                     <span>Upload files</span>
-                                                    <input id="file-upload" name="file-upload" type="file" className="sr-only" ref={pfileRef} required />
+                                                    <input id="file-upload" name="file-upload" type="file" className="sr-only" ref={pfileRef} onChange={handleFile} required />
                                                 </label>
                                                 <p className="pl-1">or drag and drop</p>
                                             </div>

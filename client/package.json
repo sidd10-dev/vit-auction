@@ -16,6 +16,7 @@
     "dependencies": "^0.0.1",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
+    "form-data": "^4.0.0",
     "headlessui": "^0.0.0",
     "heroicons": "^2.0.13",
     "next": "^13.0.6",
