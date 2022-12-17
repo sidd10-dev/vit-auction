@@ -12,7 +12,7 @@ export class ProjectService {
   constructor(@InjectRepository(ProjectEntity) private readonly projectRepository: Repository<ProjectEntity>, @InjectRepository(ComponentEntity) private readonly componentRepository: Repository<ComponentEntity>) { }
 
   // Create a new Project
-  async createProject(files: Array<Express.Multer.File>, createProjectDto: createProjectDto): Promise<ProjectEntity> {
+  async createProject(createProjectDto: createProjectDto): Promise<ProjectEntity> {
     try {
       const project = new ProjectEntity()
 
@@ -23,6 +23,7 @@ export class ProjectService {
           return obj;
         }, {}))
 
+      project.blueprint = Buffer.from("")
       // if (files.length > 0) {
       //   project.blueprint = files[0].buffer
       // }
@@ -33,7 +34,8 @@ export class ProjectService {
       // Creating Components
       createProjectDto.components.forEach(async (component, idx) => {
         try {
-          await this.createComponent("string", component, project)
+          console.log(component)
+          await this.createComponent(component, project)
         } catch (e) {
           throw e
         }
@@ -46,12 +48,12 @@ export class ProjectService {
   }
 
   // Creating a new component
-  async createComponent(file: any, createComponentDto: createComponentDto, project: ProjectEntity): Promise<any> {
+  async createComponent(createComponentDto: createComponentDto, project: ProjectEntity): Promise<any> {
     try {
       const component = new ComponentEntity()
 
       Object.assign(component, createComponentDto)
-      // component.blueprint = file.buffer
+      component.blueprint = Buffer.from("")
       component.project = project
 
       await this.componentRepository.save(component)

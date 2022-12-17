@@ -13,8 +13,7 @@ export class ProjectController {
   @UseInterceptors(FilesInterceptor('files'))
   async createProject(@UploadedFiles() files: Array<Express.Multer.File>, @Body() createProjectDto: createProjectDto): Promise<any> {
     try {
-      console.log(files)
-      await this.projectService.createProject(files, createProjectDto)
+      await this.projectService.createProject(createProjectDto)
     } catch (e) {
       throw e
     }
