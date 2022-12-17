@@ -19,7 +19,7 @@ const NewProject = () => {
     const totalRef = useRef()
     const pcsRef = useRef()
 
-    const router= useRouter()
+    const router = useRouter()
 
     const [Form, setForm] = useState([])
 
@@ -34,13 +34,23 @@ const NewProject = () => {
         event.preventDefault()
 
         try {
-
             var date = new Date();
             var current_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-            console.log("Hello")
+            console.log({
+                name: pnameRef.current.value,
+                debrief: pdescRef.current.value,
+                address: streetRef.current.value,
+                state: stateRef.current.value,
+                city: cityRef.current.value,
+                pincode: zipRef.current.value,
+                budget: totalRef.current.value,
+                quantity: pcsRef.current.value,
+                date: current_date,
+                phone: phoneRef.current.value,
+                components: Form
+            })
             console.log(pfileRef.current.value.buffer)
-
-            router.push("/customer")
+            // router.push("/customer")
 
             const response = await axios.post('/api/uploads', formData, config);
 
@@ -67,36 +77,36 @@ const NewProject = () => {
         if (Form.length === 0) {
             return true;
         }
-    
-        const someEmpty= Form.some(
-          (item) => item.industry === '' ||
-          item.desc === '' || item.name === '' ||
-          item.price === ''
-        );
-    
-        if(someEmpty){
-          Form.map((item, index)=>{
-            const allPrev= [...Form]
-    
-            if(Form[index].name == ''){
-              allPrev[index].errors.name = 'Component Name is Required'; 
-            }
 
-            
-            if(Form[index].desc == ''){
-                allPrev[index].errors.desc = 'Description is Required'; 
-            }
-            
-            if(Form[index].industry == ''){
-              allPrev[index].errors.industry = 'Industry is Required'; 
-            }
-            
-            if(Form[index].price == ''){
-              allPrev[index].errors.price = 'Component Budget is Required'; 
-            }
-    
-            setForm(allPrev)
-          });
+        const someEmpty = Form.some(
+            (item) => item.industry === '' ||
+                item.desc === '' || item.name === '' ||
+                item.price === ''
+        );
+
+        if (someEmpty) {
+            Form.map((item, index) => {
+                const allPrev = [...Form]
+
+                if (Form[index].name == '') {
+                    allPrev[index].errors.name = 'Component Name is Required';
+                }
+
+
+                if (Form[index].desc == '') {
+                    allPrev[index].errors.desc = 'Description is Required';
+                }
+
+                if (Form[index].industry == '') {
+                    allPrev[index].errors.industry = 'Industry is Required';
+                }
+
+                if (Form[index].price == '') {
+                    allPrev[index].errors.price = 'Component Budget is Required';
+                }
+
+                setForm(allPrev)
+            });
         }
 
         return !someEmpty;
@@ -104,8 +114,8 @@ const NewProject = () => {
 
     const handleAddLink = (e) => {
         e.preventDefault();
-    
-        const inputState= {
+
+        const inputState = {
             name: '',
             desc: '',
             industry: '',
@@ -162,9 +172,9 @@ const NewProject = () => {
             <NavbarCust></NavbarCust>
             <div className="w-3/4 mx-auto my-5 sm:w-2/3">
 
-            <div className="font-head text-3xl p-5 mx-5 flex items-center justify-center">
-                Create New Project
-            </div>
+                <div className="font-head text-3xl p-5 mx-5 flex items-center justify-center">
+                    Create New Project
+                </div>
 
 
                 <form className="bg-white rounded-lg" action='POST' onSubmit={newProjectEventHandler}>

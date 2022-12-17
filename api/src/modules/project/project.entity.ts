@@ -17,7 +17,7 @@ export class ProjectEntity {
   })
   debrief: string
 
-  @Column({ type: 'longblob' })
+  @Column({ type: 'longblob', default: '' })
   blueprint: Buffer
 
   @Column({

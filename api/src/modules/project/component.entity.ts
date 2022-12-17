@@ -12,7 +12,7 @@ export class ComponentEntity {
   @Column()
   desc: string
 
-  @Column({ type: "longblob" })
+  @Column({ type: "longblob", default: '' })
   blueprint: Buffer
 
   @Column()
