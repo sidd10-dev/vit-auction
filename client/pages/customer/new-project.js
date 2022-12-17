@@ -23,6 +23,13 @@ const NewProject = () => {
 
     const [Form, setForm] = useState([])
 
+    const config = {
+        headers: { 'content-type': 'multipart/form-data' },
+        onUploadProgress: (event) => {
+          console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total));
+        },
+    }
+
     const newProjectEventHandler = async (event) => {
         event.preventDefault()
 
@@ -34,6 +41,8 @@ const NewProject = () => {
             console.log(pfileRef.current.value.buffer)
 
             router.push("/customer")
+
+            const response = await axios.post('/api/uploads', formData, config);
 
             const res = await axios.post('http://localhost:3000/api/create-project', {
                 name: pnameRef.current.value,
@@ -381,8 +390,8 @@ const NewProject = () => {
                                             </label>
                                             <input
                                                 type="text"
-                                                name="compname"
-                                                id="compname"
+                                                name="name"
+                                                id="name"
                                                 className={`${styles['input-box']} ${item.errors.name ? styles['invalid'] : ''}`}
                                                 onChange={(e) => onChange(index, e)}
                                                 required
@@ -470,8 +479,8 @@ const NewProject = () => {
                                                 <div className="mt-1 flex rounded-md shadow-sm">
                                                     <input
                                                         type="number"
-                                                        name="compbud"
-                                                        id="compbud"
+                                                        name="price"
+                                                        id="price"
                                                         className={`${styles['input-box-2']} ${item.errors.price ? styles['invalid'] : ''}`}
                                                         onChange={(e) => onChange(index, e)}
                                                         required
